@@ -8,9 +8,7 @@ __pycache__/
 # VS Code
 .vscode/
 
-*.json
 # Data files
-*.json
 .env
 
 # OS
