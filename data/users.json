@@ -1,0 +1,16 @@
+[
+  {
+    "id": "b12f347d-4c72-493c-875e-e480cada8c96",
+    "name": "Hari",
+    "email": "hari@gmail.com",
+    "password": "$2b$12$ITd70GTuPY1TJwOdT65zQeimvESf3HvbVuU4vZdtAC.eWPclbKPRu",
+    "created_at": "2025-08-23T21:11:28.614692"
+  },
+  {
+    "id": "c1fb8614-0e71-4201-b755-1885a724bbef",
+    "name": "pp",
+    "email": "pp@gmail.com",
+    "password": "$2b$12$dXKeGOg.mohO4AM5/fKXDOtHE98D2lb.oCO.C6UPOAcZrDUa8Tz4S",
+    "created_at": "2025-09-02T21:34:38.678744"
+  }
+]

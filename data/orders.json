@@ -1,0 +1,104 @@
+[
+  {
+    "id": "c19a1014-6aff-4a7f-9f9e-db3a7136b2cb",
+    "user_id": "guest",
+    "items": [
+      {
+        "category": "Earrings",
+        "id": 38,
+        "image": "/static/images/earring2.jpg",
+        "inventory": 15,
+        "name": "Eclipse Stud Earrings",
+        "originalPrice": null,
+        "price": 2499,
+        "rating": 4.7,
+        "reviews": 38,
+        "quantity": 1
+      },
+      {
+        "category": "Earrings",
+        "id": 37,
+        "image": "/static/images/earring1.jpg",
+        "inventory": 20,
+        "name": "Stella Hoop Earrings",
+        "originalPrice": 2499,
+        "price": 1999,
+        "rating": 4.6,
+        "reviews": 51,
+        "quantity": 1
+      },
+      {
+        "category": "Earrings",
+        "id": 39,
+        "image": "/static/images/earring3.jpg",
+        "inventory": 9,
+        "name": "Vega Drop Earrings",
+        "originalPrice": 3799,
+        "price": 3299,
+        "rating": 4.8,
+        "reviews": 42,
+        "quantity": 1
+      }
+    ],
+    "total": 7797,
+    "status": "confirmed",
+    "payment_method": "paypal",
+    "created_at": "2025-08-21T01:04:06.129274"
+  },
+  {
+    "id": "8978d8d6-9aca-4fe0-90c6-c5f139c71931",
+    "user_id": "b12f347d-4c72-493c-875e-e480cada8c96",
+    "items": [
+      {
+        "category": "Earrings",
+        "id": 38,
+        "image": "/static/images/earring2.jpg",
+        "inventory": 15,
+        "name": "Eclipse Stud Earrings",
+        "originalPrice": null,
+        "price": 2499,
+        "rating": 4.7,
+        "reviews": 38,
+        "quantity": 1
+      },
+      {
+        "category": "Earrings",
+        "id": 39,
+        "image": "/static/images/earring3.jpg",
+        "inventory": 9,
+        "name": "Vega Drop Earrings",
+        "originalPrice": 3799,
+        "price": 3299,
+        "rating": 4.8,
+        "reviews": 42,
+        "quantity": 1
+      }
+    ],
+    "total": 5798.0,
+    "status": "confirmed",
+    "payment_method": "paypal",
+    "created_at": "2025-08-23T21:12:10.780809"
+  },
+  {
+    "id": "aada9733-82d2-41a5-ad6d-5f371e43d75a",
+    "user_id": "c1fb8614-0e71-4201-b755-1885a724bbef",
+    "items": [
+      {
+        "category": "Earrings",
+        "id": 37,
+        "image": "/static/images/earring1.jpg",
+        "inventory": 20,
+        "name": "Stella Hoop Earrings",
+        "originalPrice": 2499,
+        "price": 1999,
+        "rating": 4.6,
+        "reviews": 51,
+        "quantity": 1
+      }
+    ],
+    "total": 1999.0,
+    "status": "confirmed",
+    "payment_method": "paypal",
+    "created_at": "2025-09-02T21:34:59.871555"
+  }
+]

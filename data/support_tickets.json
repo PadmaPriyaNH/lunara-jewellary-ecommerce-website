@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": null,
+    "email": null,
+    "question": "payment options",
+    "sentiment": "neutral",
+    "status": "open",
+    "source": "chat-unmatched",
+    "created_at": "2025-08-23T20:13:49.218819"
+  },
+  {
+    "id": 2,
+    "name": null,
+    "email": null,
+    "question": "shipping",
+    "sentiment": "neutral",
+    "status": "open",
+    "source": "chat-unmatched",
+    "created_at": "2025-08-23T20:14:08.565245"
+  },
+  {
+    "id": 3,
+    "name": null,
+    "email": null,
+    "question": "How do I cancel or modify my order after placing it?",
+    "sentiment": "negative",
+    "status": "open",
+    "source": "chat-escalated",
+    "created_at": "2025-08-23T20:44:23.289398"
+  },
+  {
+    "id": 4,
+    "name": null,
+    "email": null,
+    "question": "How do I cancel or modify my order after placing it?",
+    "sentiment": "negative",
+    "status": "open",
+    "source": "chat-escalated",
+    "created_at": "2025-08-23T20:49:05.063455"
+  },
+  {
+    "id": 5,
+    "name": null,
+    "email": null,
+    "question": "hey",
+    "sentiment": "neutral",
+    "status": "open",
+    "source": "chat-unmatched",
+    "created_at": "2025-08-23T20:49:17.188082"
+  },
+  {
+    "id": 6,
+    "name": "Hari",
+    "email": "hari@gmail.com",
+    "question": "How do I cancel or modify my order after placing it?",
+    "sentiment": "negative",
+    "status": "open",
+    "source": "chat-escalated",
+    "created_at": "2025-08-23T21:13:15.460444"
+  },
+  {
+    "id": 7,
+    "name": null,
+    "email": null,
+    "question": "What is your return/refund policy?",
+    "sentiment": "negative",
+    "status": "open",
+    "source": "chat-escalated",
+    "created_at": "2025-08-23T23:21:00.550087"
+  },
+  {
+    "id": 8,
+    "name": null,
+    "email": null,
+    "question": "How do I cancel or modify my order after placing it?",
+    "sentiment": "negative",
+    "status": "open",
+    "source": "chat-escalated",
+    "created_at": "2025-09-18T21:04:34.112779"
+  }
+]
