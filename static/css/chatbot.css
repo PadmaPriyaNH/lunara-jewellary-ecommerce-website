@@ -1,0 +1,97 @@
+/* Chatbot Widget */
+.lunara-chatbot-button {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 1100;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    cursor: pointer;
+    padding: 0;
+    background: white;
+    overflow: hidden;
+}
+.lunara-chatbot-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lunara-chatbot-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 22px;
+    width: 340px;
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    overflow: hidden;
+    z-index: 1100;
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+}
+.lunara-chatbot-panel.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.lunara-chatbot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 12px 12px 10px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+}
+.lunara-chatbot-header-info { display: flex; align-items: center; gap: 10px; }
+.lunara-chatbot-header-info img { width: 36px; height: 36px; border-radius: 50%; background: #fff; }
+.lunara-chatbot-title { line-height: 1.1; font-family: 'Poppins', sans-serif; }
+.lunara-chatbot-title span { display: block; font-size: 0.8rem; font-weight: 300; opacity: 0.95; }
+.lunara-chatbot-close { background: transparent; border: none; color: #fff; font-size: 1.6rem; cursor: pointer; width: 36px; height: 36px; border-radius: 8px; }
+.lunara-chatbot-close:hover { background: rgba(255,255,255,0.15); }
+
+.lunara-chatbot-messages {
+    padding: 14px;
+    overflow-y: auto;
+    height: 100%;
+    background: #f8fafc;
+}
+
+.lunara-msg { display: flex; margin: 8px 0; }
+.lunara-msg.bot { justify-content: flex-start; }
+.lunara-msg.user { justify-content: flex-end; }
+.lunara-msg.bot img { width: 30px; height: 30px; border-radius: 50%; margin-right: 8px; flex: 0 0 auto; background: #fff; border: 1px solid #e2e8f0; }
+.lunara-msg .bubble { max-width: 78%; padding: 10px 12px; border-radius: 14px; font-size: 0.95rem; line-height: 1.4; }
+.lunara-msg.bot .bubble { background: #ffffff; border: 1px solid #e2e8f0; }
+.lunara-msg.user .bubble { background: #1e40af; color: #fff; border-top-right-radius: 4px; }
+
+.lunara-msg.typing .bubble { display: inline-flex; gap: 4px; align-items: center; }
+.lunara-msg.typing .dot { width: 6px; height: 6px; background: #94a3b8; border-radius: 50%; animation: blink 1s infinite; }
+.lunara-msg.typing .dot:nth-child(2) { animation-delay: .2s; }
+.lunara-msg.typing .dot:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .2 } 40% { opacity: 1 } }
+
+.lunara-identify { display: grid; grid-template-columns: 1fr; gap: 8px; padding: 8px 12px; background: #f1f5f9; border-top: 1px solid #e2e8f0; }
+.lunara-identify input { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.9rem; }
+
+.lunara-chatbot-input { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid #e2e8f0; }
+.lunara-chatbot-input input { flex: 1; padding: 12px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 0.95rem; }
+.lunara-send-btn { background: var(--primary-blue); color: #fff; border: none; border-radius: 10px; padding: 0 14px; cursor: pointer; box-shadow: 0 8px 20px rgba(30, 58, 138, .3); }
+.lunara-send-btn:hover { background: var(--primary-dark); }
+
+/* subtle escalate pulse */
+.lunara-chatbot-panel.escalate { box-shadow: 0 0 0 0 rgba(239,68,68,0.35); animation: escalatePulse 1.2s ease; }
+@keyframes escalatePulse { from { box-shadow: 0 0 0 0 rgba(239,68,68,0.35); } to { box-shadow: 0 0 0 18px rgba(239,68,68,0); } }
+
+@media (max-width: 480px) {
+    .lunara-chatbot-panel { width: calc(100vw - 24px); right: 12px; bottom: 90px; }
+}

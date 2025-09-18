@@ -1,0 +1,741 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="N H Padma Priya">
+    <title>Lunara - Minimalistic Jewelry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo" data-page="home">Lunara</a>
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active" data-page="home">Home</a>
+                    <a href="#" class="nav-link" data-page="catalog">Collections</a>
+                    <a href="#" class="nav-link" data-page="about">About</a>
+                    <a href="#" class="nav-link" data-page="contact">Contact</a>
+                </nav>
+                <div class="header-icons">
+                    <button class="icon-btn" id="searchIcon"><i class="fas fa-search"></i></button>
+                    <button class="icon-btn" id="cartIcon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></button>
+                    <div class="user-menu">
+                        <button class="user-btn" id="userBtn"><i class="fas fa-user"></i></button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" data-page="login">Login</a>
+                            <a href="#" data-page="signup">Sign Up</a>
+                            <a href="#" id="logoutLink" style="display: none;">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div class="page-content active" id="home-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Elegant Minimalism Meets Timeless Beauty</h1>
+                <p>Discover our curated collection of handcrafted jewelry designed for the modern minimalist</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn" id="shopNowBtn">Shop Collection</a>
+                    <a href="#" class="btn btn-outline" id="learnMoreBtn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="container">
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Free Shipping</h3>
+                    <p>Free shipping on orders over ₹999</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-undo"></i></div>
+                    <h3>Easy Returns</h3>
+                    <p>7-day hassle-free returns</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Secure Checkout</h3>
+                    <p>100% secure payment processing</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="container">
+            <div class="section-title">
+                <h2>Featured Collection</h2>
+                <p>Handcrafted pieces that blend elegance with minimalism</p>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All Products</div>
+                <div class="category-tab" data-category="Rings">Rings</div>
+                <div class="category-tab" data-category="Necklaces">Necklaces</div>
+                <div class="category-tab" data-category="Bracelets">Bracelets</div>
+                <div class="category-tab" data-category="Earrings">Earrings</div>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="container">
+            <div class="newsletter">
+                <h3>Join Our Community</h3>
+                <p>Subscribe to receive updates, access to exclusive drops, and 10% off your first order</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Page -->
+    <div class="page-content" id="login-page">
+        <div class="container">
+            <div class="auth-container" style="max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div class="auth-header" style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 10px;">Welcome Back</h2>
+                    <p>Sign in to your Lunara account</p>
+                </div>
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                        <div class="error-message" id="loginEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                        <div class="error-message" id="loginPasswordError"></div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Page -->
+    <div class="page-content" id="signup-page">
+        <div class="container">
+            <div class="auth-container" style="max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div class="auth-header" style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 10px;">Create Account</h2>
+                    <p>Join the Lunara community</p>
+                </div>
+                <form class="auth-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required placeholder="Enter your full name">
+                        <div class="error-message" id="signupNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" required placeholder="Enter your email">
+                        <div class="error-message" id="signupEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required placeholder="Create a password">
+                        <div class="error-message" id="signupPasswordError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupConfirmPassword">Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" required placeholder="Confirm your password">
+                        <div class="error-message" id="signupConfirmPasswordError"></div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Catalog Page -->
+    <div class="page-content" id="catalog-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Our Collections</h1>
+                <p>Browse our complete range of minimalistic jewelry</p>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All Products</div>
+                <div class="category-tab" data-category="Rings">Rings</div>
+                <div class="category-tab" data-category="Necklaces">Necklaces</div>
+                <div class="category-tab" data-category="Bracelets">Bracelets</div>
+                <div class="category-tab" data-category="Earrings">Earrings</div>
+            </div>
+            
+            <div class="products-grid" id="catalogProductsGrid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="page-content" id="about-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>About Lunara</h1>
+                <p>Our story of minimalistic elegance</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div class="product-image" style="height: 800px; margin-bottom: 30px;">
+                    <img src="{{ url_for('static', filename='images/lunara.png') }}" alt="Lunara Jewelry" style="width: 100%; height: 100%; object-fit: contain; background: #fff; border-radius: 15px;">
+                </div>
+                <p style="font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8;">
+                    Founded in 2025, Lunara is dedicated to creating timeless jewelry that celebrates the beauty of simplicity. 
+                    Our pieces are thoughtfully designed for the modern woman who values quality, craftsmanship, and understated elegance.
+                </p>
+                <p style="font-size: 1.1rem; margin-bottom: 30px; line-height: 1.8;">
+                    Each piece in our collection is handcrafted using ethically sourced materials and sustainable practices. 
+                    We believe that true beauty lies in minimalism, and our jewelry is designed to complement your everyday style 
+                    while making a lasting impression.
+                </p>
+                <div class="features" style="margin-top: 40px;">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-recycle"></i></div>
+                        <h3>Sustainable</h3>
+                        <p>Ethically sourced materials</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-gem"></i></div>
+                        <h3>Premium Quality</h3>
+                        <p>Handcrafted with precision</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Timeless Design</h3>
+                        <p>Classic pieces that last</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Trusted Craft</h3>
+                        <p>Authenticity you can rely on</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div class="page-content" id="contact-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you</p>
+            </div>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <form id="contactForm" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Name</label>
+                        <input type="text" required style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
+                        <input type="email" required style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Subject</label>
+                        <input type="text" required style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Message</label>
+                        <textarea required rows="5" style="width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 8px; font-family: 'Montserrat', sans-serif;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+                <div style="margin-top: 40px; text-align: center;">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Get in Touch</h3>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-envelope"></i> hello@lunara.com</p>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p style="margin-bottom: 15px;"><i class="fas fa-map-marker-alt"></i> Bangalore, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Page -->
+    <div class="page-content" id="faq-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about our products and services</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question" data-faq="1">
+                        <span>How long does shipping take?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>We process and ship all orders within 1-2 business days. Standard shipping within India takes 3-5 business days. Express shipping is available for an additional fee and delivers within 1-2 business days.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-faq="2">
+                        <span>What is your return policy?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>We offer a 7-day return policy for all unworn items in their original packaging. Items must be in perfect condition with all tags attached. Returns are subject to a 15% restocking fee. Please contact our customer service team to initiate a return.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-faq="3">
+                        <span>How should I care for my jewelry?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>To maintain the beauty of your jewelry, avoid contact with water, perfumes, lotions, and harsh chemicals. Store each piece separately in a soft pouch or jewelry box. Clean with a soft cloth and mild soap solution when needed. Remove jewelry before swimming, bathing, or exercising.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-faq="4">
+                        <span>Do you offer international shipping?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Yes, we ship internationally to select countries. International shipping rates and delivery times vary by destination. Please contact us for more information about shipping to your country. International orders may be subject to customs duties and taxes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-faq="5">
+                        <span>What materials do you use?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>Our jewelry is crafted using premium materials including 925 sterling silver, 18k gold plating, and ethically sourced gemstones. All pieces are hypoallergenic and nickel-free. We are committed to sustainable and responsible sourcing practices.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shipping Info Page -->
+    <div class="page-content" id="shipping-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Shipping Information</h1>
+                <p>Learn about our shipping options and delivery times</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                <h2 style="color: var(--primary-blue); margin-bottom: 20px;">Delivery Options</h2>
+                <div style="background: white; padding: 25px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 15px;">Standard Shipping</h3>
+                    <p><strong>₹60</strong> - Free for orders over ₹999</p>
+                    <p>Delivery Time: 3-5 business days</p>
+                    <p>Available for all locations in India</p>
+                </div>
+                <div style="background: white; padding: 25px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 15px;">Express Shipping</h3>
+                    <p><strong>₹150</strong> - Available for all orders</p>
+                    <p>Delivery Time: 1-2 business days</p>
+                    <p>Available for metro cities</p>
+                </div>
+                <h2 style="color: var(--primary-blue); margin-bottom: 20px;">Processing Time</h2>
+                <p>All orders are processed within 1-2 business days. Orders placed after 2 PM will be processed the next business day.</p>
+                <h2 style="color: var(--primary-blue); margin-bottom: 20px;">Tracking</h2>
+                <p>You will receive a tracking number via email once your order has been shipped. You can track your order status through our website or the carrier's website.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Returns Page -->
+    <div class="page-content" id="returns-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Return Policy</h1>
+                <p>Our hassle-free return process</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                <div style="background: white; padding: 25px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 15px;">7-Day Return Window</h3>
+                    <p>You have 7 days from the date of delivery to return your item for a refund or exchange.</p>
+                </div>
+                <div style="background: white; padding: 25px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Return Conditions</h3>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Items must be unworn and in original condition</li>
+                        <li>All original packaging and tags must be included</li>
+                        <li>Proof of purchase is required</li>
+                        <li>Items must be returned within 7 days of delivery</li>
+                    </ul>
+                    <p><strong>Note:</strong> Earrings cannot be returned for hygiene reasons unless faulty.</p>
+                </div>
+                <div style="background: white; padding: 25px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Return Process</h3>
+                    <ol style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>Contact our customer service team via email or phone</li>
+                        <li>Provide your order number and reason for return</li>
+                        <li>You will receive a return authorization and shipping label</li>
+                        <li>Package the item securely and ship it back</li>
+                        <li>Refund will be processed within 5-7 business days</li>
+                    </ol>
+                </div>
+                <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 15px;">Refunds</h3>
+                    <p>Refunds are processed to the original payment method within 5-7 business days. A 15% restocking fee applies to all returns.</p>
+                    <p>Shipping charges are non-refundable unless the return is due to our error.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sustainability Page -->
+    <div class="page-content" id="sustainability-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Sustainability</h1>
+                <p>Our commitment to ethical sourcing and eco-friendly practices</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; line-height: 1.8; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <p>We carefully select materials from responsible suppliers and continuously improve our processes to reduce environmental impact. Packaging is recyclable, and we work with partners who share our sustainability values.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Careers Page -->
+    <div class="page-content" id="careers-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Join Our Team</h1>
+                <p>Be part of our growing team at Lunara</p>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; line-height: 1.8; display: grid; gap: 25px;">
+                <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 10px;">Why Work at Lunara</h2>
+                    <p>We’re a design-led, values-driven company on a mission to craft timeless jewelry through ethical and sustainable practices. We care about craftsmanship, people, and planet.</p>
+                    <ul style="margin-left: 18px; margin-top: 10px;">
+                        <li>Collaborative, inclusive work culture</li>
+                        <li>Growth opportunities and learning budget</li>
+                        <li>Flexible work arrangements</li>
+                        <li>Sustainability at the core of our operations</li>
+                    </ul>
+                </section>
+                <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 10px;">Current Openings</h2>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 15px;">
+                            <h3 style="margin-bottom: 6px;">Jewelry Designer (2 openings)</h3>
+                            <p style="color: #64748b; margin-bottom: 8px;">Location: Mumbai • Full-time • Design</p>
+                            <ul style="margin-left: 18px;">
+                                <li>3+ years in jewelry design or related field</li>
+                                <li>Proficiency with CAD tools and prototyping</li>
+                                <li>Strong portfolio showcasing minimalist aesthetics</li>
+                            </ul>
+                        </div>
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 15px;">
+                            <h3 style="margin-bottom: 6px;">E-commerce Manager</h3>
+                            <p style="color: #64748b; margin-bottom: 8px;">Location: Remote • Full-time • Operations</p>
+                            <ul style="margin-left: 18px;">
+                                <li>Own storefront growth, merchandising, and analytics</li>
+                                <li>Experience with Shopify/Meta/Google Ads preferred</li>
+                                <li>Data-driven with strong execution skills</li>
+                            </ul>
+                        </div>
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 15px;">
+                            <h3 style="margin-bottom: 6px;">Customer Service Representative (3 openings)</h3>
+                            <p style="color: #64748b; margin-bottom: 8px;">Location: Hybrid • Full-time • Support</p>
+                            <ul style="margin-left: 18px;">
+                                <li>Empathetic communicator with problem-solving mindset</li>
+                                <li>Experience using helpdesk tools (e.g., Zendesk)</li>
+                                <li>Excellent written and spoken English</li>
+                            </ul>
+                        </div>
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 15px;">
+                            <h3 style="margin-bottom: 6px;">Marketing Specialist</h3>
+                            <p style="color: #64748b; margin-bottom: 8px;">Location: Mumbai • Full-time • Marketing</p>
+                            <ul style="margin-left: 18px;">
+                                <li>Plan and execute campaigns across social and email</li>
+                                <li>Knowledge of influencer marketing and PR</li>
+                                <li>Strong copywriting and content skills</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Benefits</h3>
+                        <ul style="margin-left: 18px;">
+                            <li>Health insurance</li>
+                            <li>Flexible PTO</li>
+                            <li>Learning and development stipend</li>
+                            <li>Employee discounts</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Culture & Values</h3>
+                        <ul style="margin-left: 18px;">
+                            <li>Craftsmanship</li>
+                            <li>Sustainability</li>
+                            <li>Inclusivity</li>
+                            <li>Customer obsession</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 8px;">How to Apply</h3>
+                        <p>Send your resume and portfolio (if applicable) to <strong>careers@lunara.com</strong> with subject "Application - [Role]". Include links to work samples.</p>
+                    </div>
+                </section>
+                <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 10px;">Hiring FAQ</h3>
+                    <details style="margin-bottom: 10px;"><summary>Do you offer internships?</summary><p>Yes, seasonal internships are available across Design, Marketing, and Operations.</p></details>
+                    <details style="margin-bottom: 10px;"><summary>What does the interview process look like?</summary><p>Typically: application review, recruiter screen, hiring manager interview, skills assignment (role-specific), and final interview.</p></details>
+                    <details><summary>Do you sponsor visas?</summary><p>Currently we do not offer visa sponsorship.</p></details>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Press Page -->
+    <div class="page-content" id="press-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Press & Media</h1>
+                <p>Latest news and media resources</p>
+            </div>
+            <div style="max-width: 900px; margin: 0 auto; line-height: 1.8; display: grid; gap: 25px;">
+                <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h2 style="color: var(--primary-blue); margin-bottom: 10px;">Press Kit</h2>
+                    <p>Our press kit includes brand guidelines, high-resolution product photography, and logo assets.</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                        <a href="#" class="btn" style="flex: none;">Download Full Press Kit (ZIP)</a>
+                        <a href="#" class="btn btn-outline" style="flex: none;">Download Logo (PNG)</a>
+                        <a href="#" class="btn btn-outline" style="flex: none;">Brand Guidelines (PDF)</a>
+                    </div>
+                </section>
+                <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Recent Coverage</h3>
+                        <ul style="margin-left: 18px;">
+                            <li><strong>Vogue India:</strong> "Minimalist Jewelry Trends 2025"</li>
+                            <li><strong>Elle:</strong> "Sustainable Brands to Watch"</li>
+                            <li><strong>Grazia:</strong> "Everyday Luxury: The Lunara Edit"</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Press Releases</h3>
+                        <ul style="margin-left: 18px;">
+                            <li>Oct 2025 — Lunara launches the Celeste Collection</li>
+                            <li>Aug 2025 — Lunara wins Sustainable Jewelry Award</li>
+                            <li>May 2025 — New Mumbai flagship store opening</li>
+                        </ul>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 8px;">Media Contact</h3>
+                        <p><strong>Email:</strong> press@lunara.com</p>
+                        <p><strong>Phone:</strong> +91 98765 43210</p>
+                    </div>
+                </section>
+                <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 10px;">Brand Assets</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; text-align: center;">
+                            <div class="product-image" style="height: 140px;"><img src="{{ url_for('static', filename='images/ring1.jpg') }}" alt="Asset" style="object-fit: cover;"></div>
+                            <p style="margin-top: 8px;">Product Photography</p>
+                        </div>
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; text-align: center;">
+                            <div class="product-image" style="height: 140px;"><img src="{{ url_for('static', filename='images/necklace1.jpg') }}" alt="Asset" style="object-fit: cover;"></div>
+                            <p style="margin-top: 8px;">Lifestyle Images</p>
+                        </div>
+                        <div style="border: 1px solid var(--border); border-radius: 10px; padding: 10px; text-align: center;">
+                            <div class="product-image" style="height: 140px;"><img src="{{ url_for('static', filename='images/bracelet1.jpg') }}" alt="Asset" style="object-fit: cover;"></div>
+                            <p style="margin-top: 8px;">Lookbook Previews</p>
+                        </div>
+                    </div>
+                </section>
+                <section style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 10px;">Usage Guidelines</h3>
+                    <ul style="margin-left: 18px;">
+                        <li>Do not alter or distort the Lunara logo.</li>
+                        <li>Credit Lunara when using product imagery.</li>
+                        <li>Contact us for permissions beyond standard editorial use.</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Shopping Cart</h3>
+                <button class="close-modal" id="closeCartModal">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">₹0</span>
+                </div>
+                <a href="#" class="checkout-btn" id="checkoutBtn">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Secure Payment</h3>
+                <button class="close-modal" id="closePaymentModal">&times;</button>
+            </div>
+            <div class="payment-form">
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="card">
+                        <i class="fas fa-credit-card"></i> Credit/Debit Card
+                    </div>
+                    <div class="payment-method" data-method="upi">
+                        <i class="fas fa-mobile-alt"></i> UPI
+                    </div>
+                    <div class="payment-method" data-method="paypal">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </div>
+                </div>
+                
+                <div class="payment-details" id="cardPayment">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" id="cardholderName" placeholder="John Doe">
+                    </div>
+                </div>
+                
+                <div class="payment-details" id="upiPayment" style="display: none;">
+                    <div class="form-group">
+                        <label>UPI ID</label>
+                        <input type="text" id="upiId" placeholder="yourname@upi">
+                    </div>
+                    <div class="upi-options">
+                        <div class="upi-option">
+                            <img src="https://placehold.co/50x50/1e40af/white?text=GP" alt="Google Pay">
+                            <span>Google Pay</span>
+                        </div>
+                        <div class="upi-option">
+                            <img src="https://placehold.co/50x50/1e40af/white?text=PP" alt="PhonePe">
+                            <span>PhonePe</span>
+                        </div>
+                        <div class="upi-option">
+                            <img src="https://placehold.co/50x50/1e40af/white?text=BP" alt="BHIM">
+                            <span>BHIM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-details" id="paypalPayment" style="display: none;">
+                    <div class="paypal-info">
+                        <i class="fab fa-paypal" style="font-size: 3rem; color: #0070ba;"></i>
+                        <p>You will be redirected to PayPal to complete your payment</p>
+                    </div>
+                </div>
+                
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span id="paymentSubtotal">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span id="paymentTotal">₹0</span>
+                    </div>
+                </div>
+                
+                <button class="btn" id="payNowBtn">Pay Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Lunara</h4>
+                    <p>Minimalistic jewelry crafted for the modern woman who values elegance and simplicity.</p>
+                    <div class="social-links">
+                        <a href="mailto:hello@lunara.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://instagram.com/lunara" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/lunara" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/lunara" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-category-link" data-category="Rings">Rings</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="Necklaces">Necklaces</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="Bracelets">Bracelets</a></li>
+                        <li><a href="#" class="footer-category-link" data-category="Earrings">Earrings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Help</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="shipping">Shipping Info</a></li>
+                        <li><a href="#" data-page="returns">Returns</a></li>
+                        <li><a href="#" data-page="faq">FAQ</a></li>
+                        <li><a href="#" data-page="contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="about">Our Story</a></li>
+                        <li><a href="#" data-page="sustainability">Sustainability</a></li>
+                        <li><a href="#" data-page="careers">Careers</a></li>
+                        <li><a href="#" data-page="press">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Lunara. All rights reserved.</p>
+                <p><strong style="color: var(--primary-blue);">Made with love by N H Padma Priya</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>
