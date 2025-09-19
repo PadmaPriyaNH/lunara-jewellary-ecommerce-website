@@ -2,6 +2,8 @@ Lunara Jewellery E-commerce (Flask)
 
 Production-ready, modular Flask application with a built-in FAQ-driven chatbot, JSON storage with optional MySQL, and a responsive frontend.
 
+[![🌐 Live Demo](https://img.shields.io/badge/Live-Demo-Visit%20Site-blue?style=for-the-badge&logo=internet-explorer&logoColor=white)](https://lunara-jewellary-ecommerce-website.onrender.com)
+
 Features
 - Modular Flask app using blueprints and an application factory
 - FAQ chatbot with fuzzy matching and sentiment-based escalation to support tickets
